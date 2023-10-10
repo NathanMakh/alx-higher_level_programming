@@ -1,17 +1,13 @@
 #!/usr/bin/python3
-"""
-Module 8-load_from_json_file
+def class_to_json(obj):
+    if not hasattr(obj, '__dict__'):
+        raise ValueError("Input object must be an instance of a class with attributes.")
 
-Contains function that creates a Python obj from JSON file
-"""
+    obj_dict = vars(obj)
+    serializable_dict = {}
 
+    for key, value in obj_dict.items():
+        if isinstance(value, (list, dict, str, int, bool)):
+            serializable_dict[key] = value
 
-def load_from_json_file(filename):
-    """Creates a Python obj from JSON file
-    Args:
-        filename: file
-    """
-    import json
-
-    with open(filename, mode="r", encoding="utf-8") as f:
-        return json.load(f)
+    return serializable_dict
