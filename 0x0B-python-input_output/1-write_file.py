@@ -1,15 +1,9 @@
 #!/usr/bin/python3
-"""
-Module 1-number_of_lines
-
-Contains function that returns number of lines in text file
-"""
-
-
-def number_of_lines(filename=""):
-    """Return number of lines in text file"""
-    with open(filename, mode="r", encoding="utf-8") as f:
-        lines = 0
-        for line in f:
-            lines += 1
-    return lines
+def write_file(filename="", text=""):
+    try:
+        with open(filename, 'w', encoding='utf-8') as file:
+            char_count = file.write(text)
+            return char_count
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+        return 0  # Return 0 characters written in case of an error
