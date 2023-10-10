@@ -1,30 +1,19 @@
 #!/usr/bin/python3
-"""
-Module 9-add_item
+class Student:
+    def __init__(self, first_name, last_name, age):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age = age
 
-Contains function that adds and saves to Python obj to JSON file; loads objects
+    def to_json(self):
+        student_dict = {}
+        for key, value in self.__dict__.items():
+            if isinstance(value, (list, dict, str, int, bool)):
+                student_dict[key] = value
+        return student_dict
 
-# run with ./9-add_item.py
-#
-# cat add_item.json ; echo ""
-# expect output: []
-#
-# ./9-add_item.py some random args
-# cat add_item.json ; echo ""
-# expect output: ["some", "random", "args"]
-
-"""
-
-
-from sys import argv
-save_to_json_file = __import__('7-save_to_json_file').save_to_json_file
-load_from_json_file = __import__('8-load_from_json_file').load_from_json_file
-
-filename = "add_item.json"
-
-try:
-    existing_content = load_from_json_file(filename)
-except FileNotFoundError:
-    existing_content = []
-
-save_to_json_file(existing_content + argv[1:], filename)
+# Example usage:
+if __name__ == "__main__":
+    student = Student("John", "Doe", 20)
+    student_dict = student.to_json()
+    print(student_dict)
