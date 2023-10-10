@@ -1,21 +1,8 @@
-#!/usr/bin/python3
-"""
-Module 2-read_lines
-
-Contains function that reads n lines and prints to stdout
-"""
-
-
-def read_lines(filename="", nb_lines=0):
-    """reads n lines and prints to stdout
-    Print:
-        n lines: if n
-        entire file: if n is less than 1 or greater than lines in file
-    """
-    with open(filename, mode="r", encoding="utf-8") as f:
-        if nb_lines <= 0:
-            print(f.read(), end="")
-        else:
-            while nb_lines:
-                print(f.readline(), end="")
-                nb_lines -= 1
+def append_write(filename="", text=""):
+    try:
+        with open(filename, 'a', encoding='utf-8') as file:
+            char_count = file.write(text)
+            return char_count
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+        return 0  # Return 0 characters added in case of an error
