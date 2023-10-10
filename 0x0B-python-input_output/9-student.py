@@ -11,9 +11,3 @@ class Student:
             if isinstance(value, (list, dict, str, int, bool)):
                 student_dict[key] = value
         return student_dict
-
-# Example usage:
-if __name__ == "__main__":
-    student = Student("John", "Doe", 20)
-    student_dict = student.to_json()
-    print(student_dict)
